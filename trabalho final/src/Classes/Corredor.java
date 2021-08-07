@@ -1,57 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Classes;
 
-import java.util.List;
 
-/**
- *
- * @author MatheusH
- */
+
 public class Corredor {
     
-    private int numero_corredor;
-    private List<Receptaculo>receptaculo;
+   private int codCorredor;
+   private Alojamento codAlojamento;
 
     public Corredor() {
     }
 
-    public Corredor(int numero_corredor, List<Receptaculo> receptaculo) {
-        this.numero_corredor = numero_corredor;
-        this.receptaculo = receptaculo;
+    public Corredor(int codCorredor, Alojamento codAlojamento) {
+        this.codCorredor = codCorredor;
+        this.codAlojamento = codAlojamento;
     }
 
-    /**
-     * @return the numero_corredor
-     */
-    public int getNumero_corredor() {
-        return numero_corredor;
+    
+    public int getCodCorredor() {
+        return codCorredor;
     }
 
-    /**
-     * @param numero_corredor the numero_corredor to set
-     */
-    public void setNumero_corredor(int numero_corredor) {
-        this.numero_corredor = numero_corredor;
+    
+    public void setCodCorredor(int codCorredor) {
+        this.codCorredor = codCorredor;
     }
 
-    /**
-     * @return the receptaculo
-     */
-    public List< Receptaculo> getReceptaculo() {
-        return receptaculo;
+  
+    public Alojamento getCodAlojamento() {
+        return codAlojamento;
     }
 
-    /**
-     * @param receptaculo the receptaculo to set
-     */
-    public void setReceptaculo(List< Receptaculo> receptaculo) {
-        this.receptaculo = receptaculo;
+   
+    public void setCodAlojamento(Alojamento codAlojamento) {
+        this.codAlojamento = codAlojamento;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return o.hashCode() == hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.codCorredor;
+        return hash;
+    }
+   
+   
+    
+    
     
     
     

@@ -37,4 +37,19 @@ public class TipoProduto {
     public void setQtdeMaxRecept(int qtdeMaxRecept) {
         this.qtdeMaxRecept = qtdeMaxRecept;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o.hashCode() == hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.codTipoProduto;
+        return hash;
+    }
+    
+    
+    
 }

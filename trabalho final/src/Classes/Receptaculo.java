@@ -1,72 +1,82 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Classes;
 
-import java.util.List;
+import com.sun.org.apache.regexp.internal.recompile;
 
-/**
- *
- * @author MatheusH
- */
+
+
+
 public class Receptaculo {
     
-    
-    private  List<Produto> prod;
-    private int numero_recept;
-    private Corredor localizacao;
+    private int codReceptaculo;
+    private Corredor codCorredor;
+    private TipoProduto codTipoProduto;
+    private int quantidade;
 
     public Receptaculo() {
     }
 
-    public Receptaculo(List<Produto> prod, int numero_recept, Corredor localizacao) {
-        this.prod = prod;
-        this.numero_recept = numero_recept;
-        this.localizacao = localizacao;
+    public Receptaculo(int codReceptaculo, Corredor codCorredor, TipoProduto codTipoProduto, int quantidade) {
+        this.codReceptaculo = codReceptaculo;
+        this.codCorredor = codCorredor;
+        this.codTipoProduto = codTipoProduto;
+        this.quantidade = quantidade;
     }
 
     /**
-     * @return the prod
+     * @return the codReceptaculo
      */
-    public List<Produto> getProd() {
-        return prod;
+    public int getCodReceptaculo() {
+        return codReceptaculo;
     }
 
     /**
-     * @param prod the prod to set
+     * @param codReceptaculo the codReceptaculo to set
      */
-    public void setProd(List<Produto> prod) {
-        this.prod = prod;
+    public void setCodReceptaculo(int codReceptaculo) {
+        this.codReceptaculo = codReceptaculo;
     }
 
     /**
-     * @return the numero_recept
+     * @return the codCorredor
      */
-    public int getNumero_recept() {
-        return numero_recept;
+    public Corredor getCodCorredor() {
+        return codCorredor;
     }
 
     /**
-     * @param numero_recept the numero_recept to set
+     * @param codCorredor the codCorredor to set
      */
-    public void setNumero_recept(int numero_recept) {
-        this.numero_recept = numero_recept;
+    public void setCodCorredor(Corredor codCorredor) {
+        this.codCorredor = codCorredor;
     }
 
     /**
-     * @return the localizacao
+     * @return the codTipoProduto
      */
-    public Corredor getLocalizacao() {
-        return localizacao;
+    public TipoProduto getCodTipoProduto() {
+        return codTipoProduto;
     }
 
     /**
-     * @param localizacao the localizacao to set
+     * @param codTipoProduto the codTipoProduto to set
      */
-    public void setLocalizacao(Corredor localizacao) {
-        this.localizacao = localizacao;
+    public void setCodTipoProduto(TipoProduto codTipoProduto) {
+        this.codTipoProduto = codTipoProduto;
+    }
+
+    /**
+     * @return the quantidade
+     */
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    /**
+     * @param quantidade the quantidade to set
+     */
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
     
     
@@ -75,7 +85,5 @@ public class Receptaculo {
     
     
     
-   
-    
-    
+      
 }

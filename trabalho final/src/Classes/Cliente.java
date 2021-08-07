@@ -1,127 +1,100 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Classes;
 
-import java.util.Objects;
 
-/**
- *
- * @author MatheusH
- */
-public class Cliente {
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+public class Cliente{
     
-    private int id;
+    private int codCliente;
+    private Cidade codCidade;
     private String cnpj;
-    private String endereco;
     private String nome;
-    private String telefone;
-    
+    private String contato;
+    private String endereco;
+
     public Cliente() {
     }
 
-    public Cliente(String cnpj, String endereco, String nome, String telefone, int id) {
+    public Cliente(int codCliente, Cidade codCidade, String cnpj, String nome, String contato, String endereco) {
+        this.codCliente = codCliente;
+        this.codCidade = codCidade;
         this.cnpj = cnpj;
-        this.endereco = endereco;
         this.nome = nome;
-        this.telefone = telefone;
-        this.id = id;
-       
+        this.contato = contato;
+        this.endereco = endereco;
     }
 
-    /**
-     * @return the cnpj
-     */
+  
+    public int getCodCliente() {
+        return codCliente;
+    }
+
+    
+    public void setCodCliente(int codCliente) {
+        this.codCliente = codCliente;
+    }
+
+   
+    public Cidade getCodCidade() {
+        return codCidade;
+    }
+
+    public void setCodCidade(Cidade codCidade) {
+        this.codCidade = codCidade;
+    }
+
+
     public String getCnpj() {
         return cnpj;
     }
 
-    /**
-     * @param cnpj the cnpj to set
-     */
+   
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
-    /**
-     * @return the endereco
-     */
-    public String getEndereco() {
-        return endereco;
-    }
-
-    /**
-     * @param endereco the endereco to set
-     */
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    /**
-     * @return the nome
-     */
+   
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
+  
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return the telefone
-     */
-    public String getTelefone() {
-        return telefone;
+    
+    public String getContato() {
+        return contato;
     }
 
-    /**
-     * @param telefone the telefone to set
-     */
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+  
+    public void setContato(String contato) {
+        this.contato = contato;
     }
 
- 
+  
+    public String getEndereco() {
+        return endereco;
+    }
 
+   
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
     @Override
     public boolean equals(Object o) {
-        return o.hashCode()== hashCode();
-     
+        
+        return o.hashCode() ==  hashCode();
     }
-
+    
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + this.id;
-        hash = 41 * hash + Objects.hashCode(this.cnpj);
+        int hash = 7;
+        hash = 37 * hash + this.codCliente;
         return hash;
     }
-
-
-
- 
-    
     
     
     
