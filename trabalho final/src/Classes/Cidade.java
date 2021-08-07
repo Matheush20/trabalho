@@ -15,10 +15,6 @@ public class Cidade {
         this.descricao = descricao;
         this.codEstado = codEstado;
     }
-    
-    public void rola_dura(){
-        int tamanho = 16;
-    }
 
     public int getCodCidade() {
         return codCidade;
