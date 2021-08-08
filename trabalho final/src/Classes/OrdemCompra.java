@@ -66,4 +66,19 @@ public class OrdemCompra {
         this.codTipoProduto = codTipoProduto;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return o.hashCode() ==  hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.codOrdemCompra;
+        return hash;
+    }
+    
+    
+    
+
 }

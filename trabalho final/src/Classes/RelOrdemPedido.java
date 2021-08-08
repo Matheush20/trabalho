@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.Objects;
+
 public class RelOrdemPedido {
     private OrdemCompra codOrdemCompra;
     private PedidoCompra codPedidoCompra;
@@ -27,4 +29,20 @@ public class RelOrdemPedido {
     public void setCodPedidoCompra(PedidoCompra codPedidoCompra) {
         this.codPedidoCompra = codPedidoCompra;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o.hashCode() == hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.codOrdemCompra);
+        hash = 53 * hash + Objects.hashCode(this.codPedidoCompra);
+        return hash;
+    }
+    
+    
+    
 }

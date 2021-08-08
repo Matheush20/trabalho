@@ -8,7 +8,7 @@ public class PedidoCompra {
     public PedidoCompra() {
     }
 
-    public PedidoCompra(int CodPedidoCompra, float valTotal, int fornecedor) {
+    public PedidoCompra(int codPedidoCompra, float valTotal, int fornecedor) {
         this.codPedidoCompra = codPedidoCompra;
         this.valTotal = valTotal;
     }
@@ -17,7 +17,7 @@ public class PedidoCompra {
         return codPedidoCompra;
     }
 
-    public void setCodPedidoCompra(int CodPedidoCompra) {
+    public void setCodPedidoCompra(int codPedidoCompra) {
         this.codPedidoCompra = codPedidoCompra;
     }
 
@@ -28,4 +28,19 @@ public class PedidoCompra {
     public void setValTotal(float valTotal) {
         this.valTotal = valTotal;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o.hashCode()==hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.codPedidoCompra;
+        return hash;
+    }
+    
+    
+    
 }

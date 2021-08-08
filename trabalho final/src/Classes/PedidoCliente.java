@@ -45,6 +45,19 @@ public class PedidoCliente {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o.hashCode()== hashCode();
+   
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + this.codPedidoCliente;
+        return hash;
+    }
     
     
     
