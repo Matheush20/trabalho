@@ -5,23 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBanco {
+
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/pet?useTimezone=true&serverTimezone=UTC";
-    
-    private static final String USER = "root";
-    private static final String PASSWORD = "senha";
-    
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        try{
-            // O método forName carrega e inicia o driver passado por parâmetro
-            Class.forName(DRIVER);
-            
-            // Estabelecendo a conexão
-            return DriverManager.getConnection(URL, USER, PASSWORD);
-            
-        }catch(ClassNotFoundException | SQLException ex){ // Tratamento de Exceções
-            System.out.println(ex);
-            return null;
-        }
+    private static final String URL = "jdbc:mysql://localhost";
+    private static final String PORT = "3306";
+    private static final String USUARIO = "teste";
+    private static final String SENHA = "teste";
+    private static final String BANCO = "almoxarifado";
+    private static final String TIMEZONE = "userTimezone=true&serverTimezone=UTC";
+
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
+
+        String connection = URL + ":" + PORT + "/" + BANCO + "?" + TIMEZONE;
+        Class.forName(DRIVER);
+        Connection conexao = DriverManager.getConnection(connection, USUARIO, SENHA);
+        return conexao;
+
     }
+
 }
