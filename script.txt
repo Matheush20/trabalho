@@ -1,0 +1,3 @@
+create user 'teste'@'localhost' identified by  'teste';
+grant all on *.* to 'teste'@'localhost';
+flush  privileges;
