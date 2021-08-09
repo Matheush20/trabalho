@@ -1,0 +1,127 @@
+create database almoxarifado
+default character set utf16
+default collate utf16_general_ci;
+
+use almoxarifado;
+
+create table estado(
+codEstado integer not null auto_increment,
+descricao varchar(30) not null,
+sigla varchar(2) not null,
+primary key(codEstado)
+) auto_increment = 1;
+
+create table cidade(
+codCidade integer not null auto_increment,
+descricao varchar(30) not null,
+codEstado integer not null,
+primary key(codCidade),
+foreign key (codEstado) references estado(codEstado)
+) auto_increment = 1;
+
+create table fornecedor(
+codFornecedor integer not null auto_increment,
+codCidade integer not null,
+cnpj varchar(14) not null,
+nome varchar(80) not null,
+contato varchar(11) not null,
+endereco varchar(50) not null,
+constraint unique (cnpj),
+primary key(codFornecedor),
+foreign key (codCidade) references cidade(codCidade)
+) auto_increment =1;
+
+create table cliente(
+codCliente integer not null auto_increment,
+codCidade integer not null,
+cnpj varchar(14) not null,
+nome varchar(80) not null,
+contato varchar(11) not null,
+endereco varchar(50) not null,
+constraint unique (cnpj),
+primary key(codCliente),
+foreign key (codCidade) references cidade(codCidade)
+) auto_increment = 1;
+
+create table tipoProduto(
+codTipoProduto integer not null auto_increment,
+descricao varchar(50) not null,
+qtdeMaxRecpt integer not null,
+primary key(codTipoProduto)
+) auto_increment = 1;
+
+create table ordemCompra(
+codOrdemCompra integer not null auto_increment,
+valUnitario float not null,
+quantidade integer not null,
+codCliente integer not null,
+codFornecedor integer not null,
+codTipoProduto integer not null,
+primary key(codOrdemCompra),
+foreign key (codCliente) references cliente(codCliente),
+foreign key (codFornecedor) references fornecedor(codFornecedor),
+foreign key (codTipoProduto) references tipoProduto(codTipoProduto)
+) auto_increment = 1;
+
+create table pedidoCompra(
+codPedidoCompra integer not null auto_increment,
+valTotal float not null,
+primary key(codPedidoCompra)
+) auto_increment = 1;
+
+create table relOrdemPedido(
+codOrdemCompra integer not null,
+codPedidoCompra integer not null,
+primary key(codOrdemCompra, codPedidoCompra),
+foreign key (codPedidoCompra) references pedidoCompra(codPedidoCompra),
+foreign key (codOrdemCompra) references ordemCompra(codOrdemCompra)
+);
+
+create table produto(
+codProduto integer not null auto_increment,
+UPC varchar(12) not null,
+codTipoProduto integer not null,
+codOrdemCompra integer not null,
+constraint unique (UPC),
+primary key(codProduto),
+foreign key (codTipoProduto) references tipoProduto(codTipoProduto),
+foreign key (codOrdemCompra) references ordemCompra(codOrdemCompra)
+) auto_increment = 1;
+
+
+create table alojamento(
+codAlojamento integer not null auto_increment,
+codCliente integer not null,
+primary key(codAlojamento),
+foreign key (codCliente) references cliente(codCliente)
+) auto_increment = 1;
+
+
+create table corredor(
+codCorredor integer not null auto_increment,
+codAlojamento integer not null,
+primary key(codCorredor),
+foreign key (codAlojamento) references alojamento(codAlojamento)
+) auto_increment = 1;
+
+
+create table receptaculo(
+codReceptaculo integer not null auto_increment,
+codCorredor integer not null,
+codTipoProduto integer not null,
+quantidade integer not null,
+primary key(codReceptaculo),
+foreign key (codTipoProduto) references tipoProduto(codTipoProduto),
+foreign key (codCorredor) references corredor(codCorredor)
+) auto_increment = 1;
+
+
+create table pedidoCliente(
+codPedidoCliente integer not null auto_increment,
+codTipoProduto integer not null,
+codCliente integer not null,
+quantidade integer not null,
+primary key(codPedidoCliente),
+foreign key (codTipoProduto) references tipoProduto(codTipoProduto),
+foreign key (codCliente) references cliente(codCliente)
+) auto_increment = 1;
