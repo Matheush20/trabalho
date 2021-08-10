@@ -71,8 +71,8 @@ public class Cadastro_Cliente extends javax.swing.JFrame {
             cliente.setEndereco(endereco_box.getText());
             cliente.setContato(telefone_box.getText());
             
-            String sql = "insert into cliente (cnpj, contato, endereco)";
-            sql+= "values (?, ?)";
+            String sql = "insert into cliente (codCliente, codCidade, cnpj, nome, contato, endereco)";
+            sql+= "values (?, ?, ?, ?, ?, ?)";
             try {
            
             Connection conn = ConexaoBanco.getConnection();
@@ -158,6 +158,11 @@ public class Cadastro_Cliente extends javax.swing.JFrame {
         telefone_label.setText("Telefone:");
 
         submit_button.setText("Confirmar");
+        submit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_buttonActionPerformed(evt);
+            }
+        });
 
         cancel_button.setText("Cancelar");
         cancel_button.setActionCommand("");
@@ -285,6 +290,12 @@ public class Cadastro_Cliente extends javax.swing.JFrame {
     private void estado_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_boxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_estado_boxActionPerformed
+
+    private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
+        
+        cadastrarCliente();
+        
+    }//GEN-LAST:event_submit_buttonActionPerformed
 
     /**
      * @param args the command line arguments
