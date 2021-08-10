@@ -3,11 +3,11 @@ package Classes;
 public class PedidoCliente {
     
     private int codPedidoCliente;
-    private TipoProduto codTipoProduto;
-    private Cliente codCliente;
+    private int codTipoProduto;
+    private int codCliente;
     private int quantidade;
 
-    public PedidoCliente(int codPedidoCliente, TipoProduto codTipoProduto, Cliente codCliente, int quantidade) {
+    public PedidoCliente(int codPedidoCliente, int codTipoProduto, int codCliente, int quantidade) {
         this.codPedidoCliente = codPedidoCliente;
         this.codTipoProduto = codTipoProduto;
         this.codCliente = codCliente;
@@ -22,19 +22,19 @@ public class PedidoCliente {
         this.codPedidoCliente = codPedidoCliente;
     }
 
-    public TipoProduto getCodTipoProduto() {
+    public int getCodTipoProduto() {
         return codTipoProduto;
     }
 
-    public void setCodTipoProduto(TipoProduto codTipoProduto) {
+    public void setCodTipoProduto(int codTipoProduto) {
         this.codTipoProduto = codTipoProduto;
     }
 
-    public Cliente getCodCliente() {
+    public int getCodCliente() {
         return codCliente;
     }
 
-    public void setCodCliente(Cliente codCliente) {
+    public void setCodCliente(int codCliente) {
         this.codCliente = codCliente;
     }
 

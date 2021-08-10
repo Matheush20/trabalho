@@ -6,7 +6,7 @@ package Classes;
 public class Cliente{
     
     private int codCliente;
-    private Cidade codCidade;
+    private int codCidade;
     private String cnpj;
     private String nome;
     private String contato;
@@ -15,7 +15,7 @@ public class Cliente{
     public Cliente() {
     }
 
-    public Cliente(int codCliente, Cidade codCidade, String cnpj, String nome, String contato, String endereco) {
+    public Cliente(int codCliente, int codCidade, String cnpj, String nome, String contato, String endereco) {
         this.codCliente = codCliente;
         this.codCidade = codCidade;
         this.cnpj = cnpj;
@@ -35,11 +35,11 @@ public class Cliente{
     }
 
    
-    public Cidade getCodCidade() {
+    public int getCodCidade() {
         return codCidade;
     }
 
-    public void setCodCidade(Cidade codCidade) {
+    public void setCodCidade(int codCidade) {
         this.codCidade = codCidade;
     }
 

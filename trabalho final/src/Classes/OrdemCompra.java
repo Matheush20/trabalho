@@ -5,11 +5,11 @@ public class OrdemCompra {
     private int codOrdemCompra;
     private float valUnitario;
     private int quantidade;
-    private Cliente codCliente;
-    private Fornecedor codFornecedor;
-    private TipoProduto codTipoProduto;
+    private int codCliente;
+    private int codFornecedor;
+    private int codTipoProduto;
 
-    public OrdemCompra(int codOrdemCompra, float valUnitario, int quantidade, Cliente codCliente, Fornecedor codFornecedor, TipoProduto codTipoProduto) {
+    public OrdemCompra(int codOrdemCompra, float valUnitario, int quantidade, int codCliente, int codFornecedor, int codTipoProduto) {
         this.codOrdemCompra = codOrdemCompra;
         this.valUnitario = valUnitario;
         this.quantidade = quantidade;
@@ -42,27 +42,27 @@ public class OrdemCompra {
         this.quantidade = quantidade;
     }
 
-    public Cliente getCodCliente() {
+    public int getCodCliente() {
         return codCliente;
     }
 
-    public void setCodCliente(Cliente codCliente) {
+    public void setCodCliente(int codCliente) {
         this.codCliente = codCliente;
     }
 
-    public Fornecedor getCodFornecedor() {
+    public int getCodFornecedor() {
         return codFornecedor;
     }
 
-    public void setCodFornecedor(Fornecedor codFornecedor) {
+    public void setCodFornecedor(int codFornecedor) {
         this.codFornecedor = codFornecedor;
     }
 
-    public TipoProduto getCodTipoProduto() {
+    public int getCodTipoProduto() {
         return codTipoProduto;
     }
 
-    public void setCodTipoProduto(TipoProduto codTipoProduto) {
+    public void setCodTipoProduto(int codTipoProduto) {
         this.codTipoProduto = codTipoProduto;
     }
 

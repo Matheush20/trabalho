@@ -6,12 +6,12 @@ public class Alojamento {
     
     
     private int codAlojamento;
-    private Cliente codCliente;
+    private int codCliente;
 
     public Alojamento() {
     }
 
-    public Alojamento(int codAlojamento, Cliente codCliente) {
+    public Alojamento(int codAlojamento, int codCliente) {
         this.codAlojamento = codAlojamento;
         this.codCliente = codCliente;
     }
@@ -27,11 +27,11 @@ public class Alojamento {
     }
 
     
-    public Cliente getCodCliente() {
+    public int getCodCliente() {
         return codCliente;
     }
 
-    public void setCodCliente(Cliente codCliente) {
+    public void setCodCliente(int codCliente) {
         this.codCliente = codCliente;
     }
 

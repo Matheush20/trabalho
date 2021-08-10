@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -141,9 +143,19 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
 
         jbalterar.setText("Alterar");
         jbalterar.setEnabled(false);
+        jbalterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbalterarActionPerformed(evt);
+            }
+        });
 
         jbexcluir.setText("Excluir");
         jbexcluir.setEnabled(false);
+        jbexcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbexcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pbotoesLayout = new javax.swing.GroupLayout(pbotoes);
         pbotoes.setLayout(pbotoesLayout);
@@ -210,6 +222,49 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
            }
     }//GEN-LAST:event_tbtipoprodutoMouseClicked
 
+    private void jbexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbexcluirActionPerformed
+        int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir este tipo de produto ?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+        if (option == 0){
+            excluirtipoprod();
+            jbalterar.setEnabled(false);
+            jbexcluir.setEnabled (false);
+        
+        }
+    }//GEN-LAST:event_jbexcluirActionPerformed
+
+    private void jbalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbalterarActionPerformed
+       
+    }//GEN-LAST:event_jbalterarActionPerformed
+
+    private void excluirtipoprod(){
+            try {
+            DefaultTableModel model = (DefaultTableModel) getTbtipoproduto().getModel();      
+            int codtipoprod = (int) model.getValueAt(tbtipoproduto.getSelectedRow(), 0);
+            String sql = "delete from tipoproduto where codTipoProduto = ?";
+            Connection conn  = ConexaoBanco.getConnection();
+            PreparedStatement  ps = conn.prepareStatement(sql);
+            ps.setInt(1, codtipoprod);
+            ps.execute();
+            TipoProduto ax = new TipoProduto();
+            ax.setCodTipoProduto(codtipoprod);
+            int indice =  listtipoprod.indexOf(ax);
+            if (indice > -1){
+                getListtipoprod().remove(indice);
+                model.removeRow(tbtipoproduto.getSelectedRow());
+                
+            }
+                    
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(VizualizarTipoprod.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+            
+        } 
+        
+        
+    }
+    
+    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

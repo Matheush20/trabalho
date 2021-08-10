@@ -5,12 +5,12 @@ package Classes;
 public class Cidade {
     private int codCidade;
     private String descricao;
-    private Estado codEstado;
+    private int codEstado;
 
     public Cidade() {
     }
 
-    public Cidade(int codCidade, String descricao, Estado codEstado) {
+    public Cidade(int codCidade, String descricao, int codEstado) {
         this.codCidade = codCidade;
         this.descricao = descricao;
         this.codEstado = codEstado;
@@ -35,12 +35,12 @@ public class Cidade {
     }
 
   
-    public Estado getCodEstado() {
+    public int getCodEstado() {
         return codEstado;
     }
 
    
-    public void setCodEstado(Estado codEstado) {
+    public void setCodEstado(int codEstado) {
         this.codEstado = codEstado;
     }
 

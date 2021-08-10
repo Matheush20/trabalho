@@ -3,30 +3,30 @@ package Classes;
 import java.util.Objects;
 
 public class RelOrdemPedido {
-    private OrdemCompra codOrdemCompra;
-    private PedidoCompra codPedidoCompra;
+    private int codOrdemCompra;
+    private int codPedidoCompra;
 
     public RelOrdemPedido() {
     }
 
-    public RelOrdemPedido(OrdemCompra codOrdemCompra, PedidoCompra codPedidoCompra) {
+    public RelOrdemPedido(int codOrdemCompra, int codPedidoCompra) {
         this.codOrdemCompra = codOrdemCompra;
         this.codPedidoCompra = codPedidoCompra;
     }
 
-    public OrdemCompra getOrdemCompra() {
+    public int getOrdemCompra() {
         return codOrdemCompra;
     }
 
-    public void setOrdemCompra(OrdemCompra codOrdemCompra) {
+    public void setOrdemCompra(int codOrdemCompra) {
         this.codOrdemCompra = codOrdemCompra;
     }
     
-    public PedidoCompra getCodPedidoCompra() {
+    public int getCodPedidoCompra() {
         return codPedidoCompra;
     }
 
-    public void setCodPedidoCompra(PedidoCompra codPedidoCompra) {
+    public void setCodPedidoCompra(int codPedidoCompra) {
         this.codPedidoCompra = codPedidoCompra;
     }
 

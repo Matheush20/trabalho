@@ -8,13 +8,13 @@ public class Produto {
     
     private int codProduto;
     private String UPC;
-    private TipoProduto codTipoProduto;
-    private OrdemCompra codOrdemCompra;
+    private int codTipoProduto;
+    private int codOrdemCompra;
 
     public Produto() {
     }
 
-    public Produto(int codProduto, String UPC, TipoProduto codTipoProduto, OrdemCompra codOrdemCompra) {
+    public Produto(int codProduto, String UPC, int codTipoProduto, int codOrdemCompra) {
         this.codProduto = codProduto;
         this.UPC = UPC;
         this.codTipoProduto = codTipoProduto;
@@ -41,22 +41,22 @@ public class Produto {
     }
 
   
-    public TipoProduto getCodTipoProduto() {
+    public int getCodTipoProduto() {
         return codTipoProduto;
     }
 
   
-    public void setCodTipoProduto(TipoProduto codTipoProduto) {
+    public void setCodTipoProduto(int codTipoProduto) {
         this.codTipoProduto = codTipoProduto;
     }
 
   
-    public OrdemCompra getCodOrdemCompra() {
+    public int getCodOrdemCompra() {
         return codOrdemCompra;
     }
 
    
-    public void setCodOrdemCompra(OrdemCompra codOrdemCompra) {
+    public void setCodOrdemCompra(int codOrdemCompra) {
         this.codOrdemCompra = codOrdemCompra;
     }
 

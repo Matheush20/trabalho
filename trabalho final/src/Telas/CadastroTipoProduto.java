@@ -6,6 +6,8 @@ import DatabaseConnection.ConexaoBanco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -13,9 +15,28 @@ import javax.swing.JOptionPane;
 
 public class CadastroTipoProduto extends javax.swing.JFrame {
 
+    /**
+     * @return the listtipoprod
+     */
+    public List <TipoProduto> getListtipoprod() {
+        return listtipoprod;
+    }
+
+    /**
+     * @param listtipoprod the listtipoprod to set
+     */
+    public void setListtipoprod(List <TipoProduto> listtipoprod) {
+        this.listtipoprod = listtipoprod;
+    }
+
+    
+    
+    private List <TipoProduto> listtipoprod;
   
     public CadastroTipoProduto() {
         initComponents();
+        listtipoprod = new ArrayList<>();
+        
     }
     
     

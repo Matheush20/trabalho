@@ -8,14 +8,14 @@ package Classes;
 public class Receptaculo {
     
     private int codReceptaculo;
-    private Corredor codCorredor;
-    private TipoProduto codTipoProduto;
+    private int codCorredor;
+    private int codTipoProduto;
     private int quantidade;
 
     public Receptaculo() {
     }
 
-    public Receptaculo(int codReceptaculo, Corredor codCorredor, TipoProduto codTipoProduto, int quantidade) {
+    public Receptaculo(int codReceptaculo, int codCorredor, int codTipoProduto, int quantidade) {
         this.codReceptaculo = codReceptaculo;
         this.codCorredor = codCorredor;
         this.codTipoProduto = codTipoProduto;
@@ -31,21 +31,21 @@ public class Receptaculo {
         this.codReceptaculo = codReceptaculo;
     }
 
-    public Corredor getCodCorredor() {
+    public int getCodCorredor() {
         return codCorredor;
     }
 
  
-    public void setCodCorredor(Corredor codCorredor) {
+    public void setCodCorredor(int codCorredor) {
         this.codCorredor = codCorredor;
     }
 
   
-    public TipoProduto getCodTipoProduto() {
+    public int getCodTipoProduto() {
         return codTipoProduto;
     }
 
-    public void setCodTipoProduto(TipoProduto codTipoProduto) {
+    public void setCodTipoProduto(int codTipoProduto) {
         this.codTipoProduto = codTipoProduto;
     }
 

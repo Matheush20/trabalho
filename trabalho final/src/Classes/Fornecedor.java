@@ -4,13 +4,13 @@ package Classes;
 public class Fornecedor {
     
     private int codFornecedor;
-    private Cidade codCidade;
+    private int codCidade;
     private String cnpj;
     private String nome;
     private String contato;
     private String endereco;
 
-    public Fornecedor(int codFornecedor, Cidade codCidade, String cnpj, String nome, String contato, String endereco) {
+    public Fornecedor(int codFornecedor, int codCidade, String cnpj, String nome, String contato, String endereco) {
         this.codFornecedor = codFornecedor;
         this.codCidade = codCidade;
         this.cnpj = cnpj;
@@ -29,12 +29,12 @@ public class Fornecedor {
     }
 
 
-    public Cidade getCodCidade() {
+    public int getCodCidade() {
         return codCidade;
     }
 
 
-    public void setCodCidade(Cidade codCidade) {
+    public void setCodCidade(int codCidade) {
         this.codCidade = codCidade;
     }
 

@@ -6,12 +6,12 @@ package Classes;
 public class Corredor {
     
    private int codCorredor;
-   private Alojamento codAlojamento;
+   private int codAlojamento;
 
     public Corredor() {
     }
 
-    public Corredor(int codCorredor, Alojamento codAlojamento) {
+    public Corredor(int codCorredor, int codAlojamento) {
         this.codCorredor = codCorredor;
         this.codAlojamento = codAlojamento;
     }
@@ -27,12 +27,12 @@ public class Corredor {
     }
 
   
-    public Alojamento getCodAlojamento() {
+    public int getCodAlojamento() {
         return codAlojamento;
     }
 
    
-    public void setCodAlojamento(Alojamento codAlojamento) {
+    public void setCodAlojamento(int codAlojamento) {
         this.codAlojamento = codAlojamento;
     }
 
