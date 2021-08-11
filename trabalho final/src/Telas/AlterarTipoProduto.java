@@ -3,6 +3,8 @@ package Telas;
 import Classes.Cliente;
 import Classes.TipoProduto;
 import DatabaseConnection.ConexaoBanco;
+import Telas.VizualizarTipoprod;
+import Telas.VizualizarTipoprod;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

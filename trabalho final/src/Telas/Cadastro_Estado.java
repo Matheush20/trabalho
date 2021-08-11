@@ -49,7 +49,7 @@ public class Cadastro_Estado extends javax.swing.JFrame {
             estado.setDescricao(estado_box.getText());
             estado.setSigla(sigla_box.getText());
         
-            String sql = "insert into estado (codEstado, descrisao, sigla)";
+            String sql = "insert into estado (descricao, sigla)";
             sql += "values (?, ?)";
             
             try {
@@ -170,6 +170,9 @@ public class Cadastro_Estado extends javax.swing.JFrame {
         if (option == 0){
             dispose();             
         }
+        VizualizarEstados ve = new VizualizarEstados ();
+        ve.setVisible(true);
+              
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void estado_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado_boxActionPerformed
@@ -182,6 +185,11 @@ public class Cadastro_Estado extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         cadastrarEstado();
+        VizualizarEstados  ve = new VizualizarEstados();
+        dispose();
+        ve.setVisible(true);
+        
+        
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**

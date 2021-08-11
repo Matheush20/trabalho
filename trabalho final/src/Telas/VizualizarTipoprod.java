@@ -254,7 +254,7 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
         AlterarTipoProduto atp = new AlterarTipoProduto();
         atp.alterartipoprod(ax);
         atp.setVisible(true);
-        dispose();
+        hide();
         
         
 

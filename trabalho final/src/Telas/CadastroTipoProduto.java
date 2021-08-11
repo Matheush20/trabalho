@@ -161,7 +161,7 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
 
                 TipoProduto tipoproduto = new TipoProduto();
                 tipoproduto.setDescricao(tfdescricao.getText());
-                tipoproduto.setQtdeMaxRecept(Integer.parseInt(tfQuantmaxrecept.getText()));
+                tipoproduto.setQtdeMaxRecpt(Integer.parseInt(tfQuantmaxrecept.getText()));
 
                 String sql = "insert into tipoproduto (descricao, qtdeMaxRecpt)";
                 sql += "values (?, ?)";
@@ -170,7 +170,7 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
                     Connection conn = ConexaoBanco.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ps.setString(1, tipoproduto.getDescricao());
-                    ps.setString(2, String.valueOf(tipoproduto.getQtdeMaxRecept()));
+                    ps.setString(2, String.valueOf(tipoproduto.getQtdeMaxRecpt()));
                     ps.execute();
 
                     JOptionPane.showMessageDialog(this, "Tipo de produto cadastrado com sucesso!", "Confirmação de cadastro", JOptionPane.INFORMATION_MESSAGE);

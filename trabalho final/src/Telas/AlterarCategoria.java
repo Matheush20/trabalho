@@ -10,9 +10,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class CadastroCategoria extends javax.swing.JFrame {
+public class AlterarCategoria extends javax.swing.JFrame {
 
-    public CadastroCategoria() {
+ 
+    public int getCodigo() {
+        return codigo;
+    }
+
+ 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    
+    
+    private int codigo;
+    
+    public AlterarCategoria() {
         initComponents();
     }
 
@@ -21,7 +35,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
         tfdescricao.setText("");
 
     }
-
+   
     private boolean validardados() {
 
         boolean validacao = true;
@@ -39,28 +53,55 @@ public class CadastroCategoria extends javax.swing.JFrame {
         return validacao;
 
     }
+    
+    
+    public void ax (Categoria categoria){
+        
+        tfdescricao.setText(categoria.getDescricao());
+        setCodigo(categoria.getCodCategoria());
+        
+        
+    }
+    
+    
+    private void alterar (){
+        
+        
+        try {
+            String sql = "update categoria set descricao = ? where codCategoria = " + String.valueOf(getCodigo());
+            Connection conexao = ConexaoBanco.getConnection();
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setString(1, tfdescricao.getText());
+            ps.execute();
 
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao obter  os dados do banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pPrincipal = new javax.swing.JPanel();
         ldescricao = new javax.swing.JLabel();
-        jbconfirmar = new javax.swing.JButton();
+        jbalterar = new javax.swing.JButton();
         jbcancelar = new javax.swing.JButton();
         tfdescricao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro Categoria");
+        setTitle("Alteração Categoria");
 
         pPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
 
         ldescricao.setText("Descrição: ");
 
-        jbconfirmar.setText("Confirmar");
-        jbconfirmar.addActionListener(new java.awt.event.ActionListener() {
+        jbalterar.setText("Alterar");
+        jbalterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbconfirmarActionPerformed(evt);
+                jbalterarActionPerformed(evt);
             }
         });
 
@@ -77,7 +118,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
             pPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPrincipalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbconfirmar)
+                .addComponent(jbalterar)
                 .addGap(9, 9, 9)
                 .addComponent(jbcancelar)
                 .addContainerGap())
@@ -96,7 +137,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
                     .addComponent(tfdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(pPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbconfirmar)
+                    .addComponent(jbalterar)
                     .addComponent(jbcancelar)))
         );
 
@@ -124,54 +165,29 @@ public class CadastroCategoria extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbcancelarActionPerformed
 
-    private void cadastro(){
-        if (validardados()) {
-
-            Categoria categoria = new Categoria();
-            categoria.setDescricao(tfdescricao.getText());
-            String sql = "insert into categoria (descricao)";
-            sql += "values (?)";
-            try {
-
-                Connection conn = ConexaoBanco.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, categoria.getDescricao());
-                ps.execute();
-
-                JOptionPane.showMessageDialog(this, "Categoria cadastrada com sucesso!", "Confirmação de cadastro", JOptionPane.INFORMATION_MESSAGE);
-                limpardados();
-
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(CadastroTipoProduto.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
+    private void jbalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbalterarActionPerformed
+        alterar();
+        JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alteração cadastral", JOptionPane.INFORMATION_MESSAGE);
         
-        
-    }
-    
-    private void jbconfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbconfirmarActionPerformed
-
-        cadastro();
-        JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-        VizualizarCategoria vc = new VizualizarCategoria();
+        VizualizarCategoria vc =  new VizualizarCategoria();
         dispose();
         vc.setVisible(true);
+        
 
-    }//GEN-LAST:event_jbconfirmarActionPerformed
+    }//GEN-LAST:event_jbalterarActionPerformed
 
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroCategoria().setVisible(true);
+                new AlterarCategoria().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbalterar;
     private javax.swing.JButton jbcancelar;
-    private javax.swing.JButton jbconfirmar;
     private javax.swing.JLabel ldescricao;
     private javax.swing.JPanel pPrincipal;
     private javax.swing.JTextField tfdescricao;

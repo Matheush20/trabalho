@@ -190,7 +190,13 @@ public class Alterar_Estado extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         alterar();
+        JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alteração cadastral", JOptionPane.INFORMATION_MESSAGE);
         dispose();
+        VizualizarEstados ve = new VizualizarEstados();
+        
+        
+        ve.setVisible(true);
+        
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**

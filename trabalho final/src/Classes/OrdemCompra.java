@@ -2,16 +2,10 @@ package Classes;
 
 public class OrdemCompra {
 
-    /**
-     * @return the situacao
-     */
     public int getSituacao() {
         return situacao;
     }
 
-    /**
-     * @param situacao the situacao to set
-     */
     public void setSituacao(int situacao) {
         this.situacao = situacao;
     }
