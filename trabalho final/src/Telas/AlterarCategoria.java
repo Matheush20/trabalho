@@ -30,11 +30,7 @@ public class AlterarCategoria extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void limpardados() {
 
-        tfdescricao.setText("");
-
-    }
    
     private boolean validardados() {
 

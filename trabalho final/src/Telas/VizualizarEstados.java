@@ -54,6 +54,7 @@ public class VizualizarEstados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro ao obter  os dados do banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
 
         DefaultTableModel model = (DefaultTableModel) getTbEstado().getModel();
         for (Estado listEstado : listEstado) {
@@ -256,8 +257,10 @@ public class VizualizarEstados extends javax.swing.JFrame {
 
     private void jbexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbexcluirActionPerformed
         int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir este estado ?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+        
         if (option == 0){
             excluirEstado();
+             
             jbalterar.setEnabled(false);
             jbexcluir.setEnabled (false);
         
@@ -286,6 +289,7 @@ public class VizualizarEstados extends javax.swing.JFrame {
 
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
         Cadastro_Estado ce = new Cadastro_Estado();
+        
         hide();
         ce.setVisible(true);
     }//GEN-LAST:event_jbCadastrarActionPerformed

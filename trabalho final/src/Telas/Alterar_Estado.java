@@ -27,12 +27,7 @@ public class Alterar_Estado extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void limpardados(){
-        
-        estado_box.setText("");
-        sigla_box.setText("");
-    }
-    
+
     private boolean validardados(){
         boolean validar = true;
         

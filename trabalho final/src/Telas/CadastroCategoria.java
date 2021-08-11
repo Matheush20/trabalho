@@ -16,11 +16,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void limpardados() {
 
-        tfdescricao.setText("");
-
-    }
 
     private boolean validardados() {
 
@@ -139,7 +135,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
                 ps.execute();
 
                 JOptionPane.showMessageDialog(this, "Categoria cadastrada com sucesso!", "Confirmação de cadastro", JOptionPane.INFORMATION_MESSAGE);
-                limpardados();
+                
 
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(CadastroTipoProduto.class.getName()).log(Level.SEVERE, null, ex);

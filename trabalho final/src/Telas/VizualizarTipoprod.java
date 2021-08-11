@@ -1,5 +1,6 @@
 package Telas;
 
+import Classes.Categoria;
 import Classes.TipoProduto;
 import DatabaseConnection.ConexaoBanco;
 import java.sql.Connection;
@@ -17,16 +18,18 @@ import javax.swing.table.DefaultTableModel;
 
 public class VizualizarTipoprod extends javax.swing.JFrame {
 
-    /**
-     * @return the listtipoprod
-     */
+    public List<Categoria> getListcategoria() {
+        return listcategoria;
+    }
+
+    public void setListcategoria(List<Categoria> listcategoria) {
+        this.listcategoria = listcategoria;
+    }
+
     public List<TipoProduto> getListtipoprod() {
         return listtipoprod;
     }
 
-    /**
-     * @param listtipoprod the listtipoprod to set
-     */
     public void setListtipoprod(List<TipoProduto> listtipoprod) {
         this.listtipoprod = listtipoprod;
     }
@@ -35,10 +38,13 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
         initComponents();
 
         listtipoprod = new ArrayList<>();
+
+        listcategoria = new ArrayList<>();
         preencherdados();
     }
 
     private List<TipoProduto> listtipoprod;
+    private List<Categoria> listcategoria;
 
     private void preencherdados() {
 
@@ -51,8 +57,27 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
                 int cod = rs.getInt("codTipoProduto");
                 String desc = rs.getString("descricao");
                 int qtde = rs.getInt("qtdeMaxRecpt");
-                TipoProduto tipoprod = new TipoProduto(cod, desc, qtde);
+                String upc = rs.getString("UPC");
+                int codcat = rs.getInt("codCategoria");
+                TipoProduto tipoprod = new TipoProduto(cod, desc, qtde, upc, codcat);
                 getListtipoprod().add(tipoprod);
+
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao obter  os dados do banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            Connection conexao = ConexaoBanco.getConnection();
+            String sql1 = "select * from categoria";
+            PreparedStatement ps1 = conexao.prepareStatement(sql1);
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                int cod = rs1.getInt("codCategoria");
+                String desc = rs1.getString("descricao");
+                Categoria categoria = new Categoria(cod, desc);
+                getListcategoria().add(categoria);
 
             }
 
@@ -62,10 +87,17 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
         }
 
         DefaultTableModel model = (DefaultTableModel) getTbtipoproduto().getModel();
-        for (TipoProduto listtipoprod1 : getListtipoprod()) {
-            model.addRow(new Object[]{listtipoprod1.getCodTipoProduto(), listtipoprod1.getDescricao(), listtipoprod1.getQtdeMaxRecept()});
 
-        }
+        getListtipoprod().forEach((listtipoprod1) -> {
+            for (Categoria categoria : getListcategoria()) {
+                if (listtipoprod1.getCodCategoria() == categoria.getCodCategoria()) {
+                    String nome = categoria.getDescricao();
+                    model.addRow(new Object[]{listtipoprod1.getCodTipoProduto(), listtipoprod1.getDescricao(), listtipoprod1.getQtdeMaxRecpt(), listtipoprod1.getUPC(), nome});
+
+                }
+
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -94,14 +126,14 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
 
             },
             new String [] {
-                "codTipoproduto", "descricao", "qtdeMaxRecpt"
+                "codTipoproduto", "descricao", "qtdeMaxRecpt", "UPC", "Categoria"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,8 +160,10 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
         sptipoproduto.setViewportView(tbtipoproduto);
         if (tbtipoproduto.getColumnModel().getColumnCount() > 0) {
             tbtipoproduto.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tbtipoproduto.getColumnModel().getColumn(1).setPreferredWidth(350);
+            tbtipoproduto.getColumnModel().getColumn(1).setPreferredWidth(250);
             tbtipoproduto.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tbtipoproduto.getColumnModel().getColumn(3).setPreferredWidth(75);
+            tbtipoproduto.getColumnModel().getColumn(4).setPreferredWidth(70);
         }
 
         javax.swing.GroupLayout ptabelatipoprodutoLayout = new javax.swing.GroupLayout(ptabelatipoproduto);
@@ -159,7 +193,7 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
             }
         });
 
-        jbnovo.setText("Novo");
+        jbnovo.setText("Cadastrar");
         jbnovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbnovoActionPerformed(evt);
@@ -235,9 +269,11 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
     }//GEN-LAST:event_tbtipoprodutoMouseClicked
 
     private void jbexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbexcluirActionPerformed
-        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir este tipo de produto ?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir o item selecionado?", "Confrimação", JOptionPane.YES_NO_OPTION);
+        
         if (option == 0) {
             excluirtipoprod();
+            
             getJbalterar().setEnabled(false);
             getJbexcluir().setEnabled(false);
 
@@ -245,26 +281,39 @@ public class VizualizarTipoprod extends javax.swing.JFrame {
     }//GEN-LAST:event_jbexcluirActionPerformed
 
     private void jbalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbalterarActionPerformed
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo alterar o item selecionado?", "Confrimação", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            TipoProduto ax = new TipoProduto();
+            DefaultTableModel model = (DefaultTableModel) getTbtipoproduto().getModel();
+            ax.setCodTipoProduto((int) model.getValueAt(getTbtipoproduto().getSelectedRow(), 0));
+            ax.setDescricao((String) model.getValueAt(getTbtipoproduto().getSelectedRow(), 1));
+            ax.setQtdeMaxRecpt((int) model.getValueAt(getTbtipoproduto().getSelectedRow(), 2));
+            ax.setUPC((String) model.getValueAt(getTbtipoproduto().getSelectedRow(), 3));
+            String nome = (String) (model.getValueAt(getTbtipoproduto().getSelectedRow(), 4));
+            int codigo = 0;
+            for (Categoria categoria : listcategoria) {
+                if (categoria.getDescricao().equals(nome)) {
+                    codigo = categoria.getCodCategoria();
 
-        TipoProduto ax = new TipoProduto();
-        DefaultTableModel model = (DefaultTableModel) getTbtipoproduto().getModel();
-        ax.setCodTipoProduto((int) model.getValueAt(getTbtipoproduto().getSelectedRow(), 0));
-        ax.setDescricao((String) model.getValueAt(getTbtipoproduto().getSelectedRow(), 1));
-        ax.setQtdeMaxRecept((int) model.getValueAt(getTbtipoproduto().getSelectedRow(), 2));
-        AlterarTipoProduto atp = new AlterarTipoProduto();
-        atp.alterartipoprod(ax);
-        atp.setVisible(true);
-        hide();
-        
-        
+                }
+
+            }
+            
+            ax.setCodCategoria(codigo);
+            AlterarTipoProduto atp = new AlterarTipoProduto();
+            atp.alterartipoprod(ax);
+            atp.setVisible(true);
+            hide();
+        }
 
 
     }//GEN-LAST:event_jbalterarActionPerformed
 
     private void jbnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnovoActionPerformed
-        CadastroTipoProduto ctp =  new CadastroTipoProduto();
+        CadastroTipoProduto ctp = new CadastroTipoProduto();
+        
         ctp.setVisible(true);
-        dispose();
+        hide();
     }//GEN-LAST:event_jbnovoActionPerformed
 
     private void excluirtipoprod() {

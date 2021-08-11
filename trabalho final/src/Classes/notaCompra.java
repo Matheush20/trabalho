@@ -58,7 +58,7 @@ public class notaCompra {
 
     @Override
     public boolean equals(Object o) {
-        return super.equals(o); //To change body of generated methods, choose Tools | Templates.
+        return o.hashCode()== hashCode();
     }
 
     @Override

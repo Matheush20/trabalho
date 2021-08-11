@@ -16,6 +16,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class VizualizarCategoria extends javax.swing.JFrame {
 
+    public List<TipoProduto> getListtipoprod() {
+        return listtipoprod;
+    }
+
+    public void setListtipoprod(List<TipoProduto> listtipoprod) {
+        this.listtipoprod = listtipoprod;
+    }
+
     public List<Categoria> getListCategoria() {
         return listCategoria;
     }
@@ -25,10 +33,12 @@ public class VizualizarCategoria extends javax.swing.JFrame {
     }
 
     private List<Categoria> listCategoria;
+    private List<TipoProduto> listtipoprod;
 
     public VizualizarCategoria() {
         initComponents();
         listCategoria = new ArrayList<>();
+        listtipoprod = new ArrayList<>();
         preencherdados();
     }
 
@@ -43,6 +53,26 @@ public class VizualizarCategoria extends javax.swing.JFrame {
                 String desc = rs.getString("descricao");
                 Categoria categoria = new Categoria(cod, desc);
                 getListCategoria().add(categoria);
+
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao obter  os dados do banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            Connection conexao = ConexaoBanco.getConnection();
+            String sql = "select * from tipoproduto";
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int cod = rs.getInt("codTipoProduto");
+                String desc = rs.getString("descricao");
+                int qtde = rs.getInt("qtdeMaxRecpt");
+                String upc = rs.getString("UPC");
+                int codcat = rs.getInt("codCategoria");
+                TipoProduto tipoprod = new TipoProduto(cod, desc, qtde, upc, codcat);
+                getListtipoprod().add(tipoprod);
 
             }
 
@@ -70,8 +100,6 @@ public class VizualizarCategoria extends javax.swing.JFrame {
         jbcadastrar = new javax.swing.JButton();
         jbalterar = new javax.swing.JButton();
         jbexcluir = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tbcategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,8 +213,9 @@ public class VizualizarCategoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbcadastrarActionPerformed
-
+       
         CadastroCategoria cc = new CadastroCategoria();
+        
         cc.setVisible(true);
         hide();
 
@@ -201,7 +230,7 @@ public class VizualizarCategoria extends javax.swing.JFrame {
             String sql = "delete from categoria where codCategoria = ?";
             Connection conn = ConexaoBanco.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(2, codcategoria);
+            ps.setInt(1, codcategoria);
             ps.execute();
             Categoria ax = new Categoria();
             ax.setCodCategoria(codcategoria);
@@ -219,14 +248,37 @@ public class VizualizarCategoria extends javax.swing.JFrame {
         }
     }
 
+    private boolean verifica() {
+        DefaultTableModel model = (DefaultTableModel) tbcategoria.getModel();
+        int codigo = (int) model.getValueAt(tbcategoria.getSelectedRow(), 1);
+        boolean confirmacao = false;
+
+        for (TipoProduto tipoProduto : listtipoprod) {
+            if (codigo == tipoProduto.getCodCategoria()) {
+                confirmacao = true;
+            }
+        }
+
+        return confirmacao;
+    }
+
     private void jbexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbexcluirActionPerformed
-        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir o item selecionado?", "Confrimação", JOptionPane.YES_NO_OPTION);
-        if (option == 0) {
-            excluir();
-            jbalterar.setEnabled(false);
-            jbexcluir.setEnabled(false);
+        
+        if (verifica()) {
+            JOptionPane.showMessageDialog(this, "Há um tipo de produto vinculado a esta categoria!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir o item selecionado?", "Confrimação", JOptionPane.YES_NO_OPTION);
+             
+            if (option == 0) {
+                excluir();
+                
+                jbalterar.setEnabled(false);
+                jbexcluir.setEnabled(false);
+
+            }
 
         }
+
     }//GEN-LAST:event_jbexcluirActionPerformed
 
     private void tbcategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbcategoriaMouseClicked
@@ -238,6 +290,8 @@ public class VizualizarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_tbcategoriaMouseClicked
 
     private void jbalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbalterarActionPerformed
+      
+        
         int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo alterar o item selecionado?", "Confrimação", JOptionPane.YES_NO_OPTION);
         if (option == 0) {
 

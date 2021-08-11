@@ -17,11 +17,7 @@ public class Cadastro_Estado extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void limpardados(){
-        
-        estado_box.setText("");
-        sigla_box.setText("");
-    }
+  
     
     private boolean validardados(){
         boolean validar = true;
@@ -60,7 +56,7 @@ public class Cadastro_Estado extends javax.swing.JFrame {
                 ps.execute();
             
                 JOptionPane.showMessageDialog(this, "Estado cadastrado com sucesso!", "Confirmação de cadastro", JOptionPane.INFORMATION_MESSAGE);
-                limpardados();
+             
             } 
             catch (ClassNotFoundException  | SQLException ex) { 
                 Logger.getLogger(Cadastro_Estado.class.getName()).log(Level.SEVERE, null, ex);            
