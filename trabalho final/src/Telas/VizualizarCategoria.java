@@ -201,7 +201,7 @@ public class VizualizarCategoria extends javax.swing.JFrame {
             String sql = "delete from categoria where codCategoria = ?";
             Connection conn = ConexaoBanco.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(2, codcategoria);
+            ps.setInt(1, codcategoria);
             ps.execute();
             Categoria ax = new Categoria();
             ax.setCodCategoria(codcategoria);

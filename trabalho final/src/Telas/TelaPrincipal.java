@@ -41,6 +41,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jEstado = new javax.swing.JMenuItem();
         micategoria = new javax.swing.JMenuItem();
         mitipoprod = new javax.swing.JMenuItem();
+        jCidade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -70,6 +71,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mvizualizar.add(mitipoprod);
+
+        jCidade.setText("Cidade");
+        jCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCidadeActionPerformed(evt);
+            }
+        });
+        mvizualizar.add(jCidade);
 
         menubar.add(mvizualizar);
 
@@ -108,6 +117,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_micategoriaActionPerformed
 
+    private void jCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCidadeActionPerformed
+        VizualizarCidades ci = new VizualizarCidades();
+        ci.setVisible(true);
+    }//GEN-LAST:event_jCidadeActionPerformed
+
     public static void main(String args[]) {
       
        
@@ -119,6 +133,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jCidade;
     private javax.swing.JMenuItem jEstado;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JMenuItem micategoria;
