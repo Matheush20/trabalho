@@ -11,14 +11,26 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-public class CadastroTipoProduto extends javax.swing.JFrame {
+public class AlterarTipoProduto extends javax.swing.JFrame {
 
+    
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
+    public int getCodigo (){
+        return codigo;
+        
+    }
+ 
 
-   
+ 
+    private int codigo;
     
 
-    public CadastroTipoProduto() {
+    public AlterarTipoProduto() {
         initComponents();
 
     }
@@ -30,8 +42,31 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
 
     }
 
+    public void alterar() {
 
-   
+        try {
+            String sql = "update tipoproduto set descricao = ?, qtdeMaxRecpt = ? where codTipoProduto = " + String.valueOf(codigo);
+            Connection conexao = ConexaoBanco.getConnection();
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setString(1, tfdescricao.getText());
+            ps.setInt(2, Integer.valueOf(tfQuantmaxrecept.getText()));
+            ps.execute();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao obter  os dados do banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+
+    public void alterartipoprod(TipoProduto tipoprod) {
+
+        tfdescricao.setText(tipoprod.getDescricao());
+        tfQuantmaxrecept.setText(String.valueOf(tipoprod.getQtdeMaxRecept()));
+        setCodigo(tipoprod.getCodTipoProduto());
+
+       
+
+    }
 
     private boolean validardados() {
 
@@ -68,16 +103,16 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
         jbcancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro Tipo Produto");
+        setTitle("Alterar Tipo Produto");
 
-        jpPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Tipo Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
+        jpPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar Tipo Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
 
         lDescricao.setText("Descricao: ");
 
         lQuantmaxrecept.setText("Quatidade máxima em um receptáculo: ");
         lQuantmaxrecept.setToolTipText("");
 
-        jbconfirmar.setText("Confirmar");
+        jbconfirmar.setText("Alterar");
         jbconfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbconfirmarActionPerformed(evt);
@@ -154,42 +189,14 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbcancelarActionPerformed
 
-    private void cadastrartipoprod() {
-
-        if (validardados()) {
-           
-
-                TipoProduto tipoproduto = new TipoProduto();
-                tipoproduto.setDescricao(tfdescricao.getText());
-                tipoproduto.setQtdeMaxRecept(Integer.parseInt(tfQuantmaxrecept.getText()));
-
-                String sql = "insert into tipoproduto (descricao, qtdeMaxRecpt)";
-                sql += "values (?, ?)";
-                try {
-
-                    Connection conn = ConexaoBanco.getConnection();
-                    PreparedStatement ps = conn.prepareStatement(sql);
-                    ps.setString(1, tipoproduto.getDescricao());
-                    ps.setString(2, String.valueOf(tipoproduto.getQtdeMaxRecept()));
-                    ps.execute();
-
-                    JOptionPane.showMessageDialog(this, "Tipo de produto cadastrado com sucesso!", "Confirmação de cadastro", JOptionPane.INFORMATION_MESSAGE);
-                    limpardados();
-
-                } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(CadastroTipoProduto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-           
-
-        }
-
-    }
+   
 
 
     private void jbconfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbconfirmarActionPerformed
-        cadastrartipoprod();
-        VizualizarTipoprod tp = new VizualizarTipoprod ();
+        alterar();
+        JOptionPane.showMessageDialog(this, "Tipo de produto alterado com sucesso!", "Alteração tipo de produto", JOptionPane.INFORMATION_MESSAGE);
+        VizualizarTipoprod  tp = new VizualizarTipoprod();
+        
         dispose();
         tp.setVisible(true);
     }//GEN-LAST:event_jbconfirmarActionPerformed
@@ -201,7 +208,7 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroTipoProduto().setVisible(true);
+                new AlterarTipoProduto().setVisible(true);
             }
         });
     }

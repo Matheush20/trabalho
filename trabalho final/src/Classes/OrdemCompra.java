@@ -2,21 +2,39 @@ package Classes;
 
 public class OrdemCompra {
 
+    /**
+     * @return the situacao
+     */
+    public int getSituacao() {
+        return situacao;
+    }
+
+    /**
+     * @param situacao the situacao to set
+     */
+    public void setSituacao(int situacao) {
+        this.situacao = situacao;
+    }
+
     private int codOrdemCompra;
     private float valUnitario;
     private int quantidade;
     private int codCliente;
     private int codFornecedor;
     private int codTipoProduto;
+    private int situacao;
 
-    public OrdemCompra(int codOrdemCompra, float valUnitario, int quantidade, int codCliente, int codFornecedor, int codTipoProduto) {
+    public OrdemCompra(int codOrdemCompra, float valUnitario, int quantidade, int codCliente, int codFornecedor, int codTipoProduto, int situacao) {
         this.codOrdemCompra = codOrdemCompra;
         this.valUnitario = valUnitario;
         this.quantidade = quantidade;
         this.codCliente = codCliente;
         this.codFornecedor = codFornecedor;
         this.codTipoProduto = codTipoProduto;
+        this.situacao = situacao;
     }
+
+    
     
     public int getCodOrdemCompra() {
         return codOrdemCompra;

@@ -3,53 +3,85 @@ package Classes;
 public class TipoProduto {
     private int codTipoProduto;
     private String descricao;
-    private int qtdeMaxRecept;
+    private int qtdeMaxRecpt;
+    private String UPC;
+    private int codCategoria;
 
     public TipoProduto() {
     }
 
-    public TipoProduto(int codTipoProduto, String descricao, int qtdeMaxRecept){
+    public TipoProduto(int codTipoProduto, String descricao, int qtdeMaxRecpt, String UPC, int codCategoria) {
         this.codTipoProduto = codTipoProduto;
         this.descricao = descricao;
-        this.qtdeMaxRecept = qtdeMaxRecept;
+        this.qtdeMaxRecpt = qtdeMaxRecpt;
+        this.UPC = UPC;
+        this.codCategoria = codCategoria;
     }
 
     public int getCodTipoProduto() {
         return codTipoProduto;
     }
 
+
     public void setCodTipoProduto(int codTipoProduto) {
         this.codTipoProduto = codTipoProduto;
     }
 
+ 
     public String getDescricao() {
         return descricao;
     }
+
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    public int getQtdeMaxRecept() {
-        return qtdeMaxRecept;
+    public int getQtdeMaxRecpt() {
+        return qtdeMaxRecpt;
     }
 
-    public void setQtdeMaxRecept(int qtdeMaxRecept) {
-        this.qtdeMaxRecept = qtdeMaxRecept;
+  
+    public void setQtdeMaxRecpt(int qtdeMaxRecpt) {
+        this.qtdeMaxRecpt = qtdeMaxRecpt;
+    }
+
+    
+    public String getUPC() {
+        return UPC;
+    }
+
+    public void setUPC(String UPC) {
+        this.UPC = UPC;
+    }
+
+  
+    public int getCodCategoria() {
+        return codCategoria;
+    }
+
+    
+    public void setCodCategoria(int codCategoria) {
+        this.codCategoria = codCategoria;
     }
 
     @Override
     public boolean equals(Object o) {
-        return o.hashCode() == hashCode();
+        return super.equals(o); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.codTipoProduto;
+        int hash = 5;
+        hash = 53 * hash + this.codTipoProduto;
         return hash;
     }
     
     
+    
+    
+    
+    
+  
     
 }

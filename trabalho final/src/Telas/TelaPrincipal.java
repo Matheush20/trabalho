@@ -37,27 +37,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         menubar = new javax.swing.JMenuBar();
-        mcadastro = new javax.swing.JMenu();
-        micadastrotipoprod = new javax.swing.JMenuItem();
         mvizualizar = new javax.swing.JMenu();
         mitipoprod = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
 
-        mcadastro.setText("Cadastrar");
-
-        micadastrotipoprod.setText("Tipo Produto");
-        micadastrotipoprod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                micadastrotipoprodActionPerformed(evt);
-            }
-        });
-        mcadastro.add(micadastrotipoprod);
-
-        menubar.add(mcadastro);
-
-        mvizualizar.setText("Vizualizar");
+        mvizualizar.setText("Cadastrar");
 
         mitipoprod.setText("Tipo Produto");
         mitipoprod.addActionListener(new java.awt.event.ActionListener() {
@@ -79,17 +65,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 699, Short.MAX_VALUE)
+            .addGap(0, 701, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void micadastrotipoprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_micadastrotipoprodActionPerformed
-        CadastroTipoProduto ctp = new CadastroTipoProduto ();
-        ctp.setVisible(true);
-    }//GEN-LAST:event_micadastrotipoprodActionPerformed
 
     private void mitipoprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitipoprodActionPerformed
         VizualizarTipoprod vtp = new VizualizarTipoprod ();
@@ -107,9 +88,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu mcadastro;
     private javax.swing.JMenuBar menubar;
-    private javax.swing.JMenuItem micadastrotipoprod;
     private javax.swing.JMenuItem mitipoprod;
     private javax.swing.JMenu mvizualizar;
     // End of variables declaration//GEN-END:variables

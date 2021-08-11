@@ -4,9 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Telas/VizualizarTipoprod.java</file>
-            <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Telas/Cadastro_Cliente.java</file>
+            <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Classes/OrdemCompra.java</file>
+            <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Telas/VizualizarCliente.java</file>
+            <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Telas/TelaPrincipal.java</file>
+            <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Telas/AlterarTipoProduto.java</file>
             <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/DatabaseConnection/ConexaoBanco.java</file>
+            <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Classes/PedidoCliente.java</file>
             <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Telas/CadastroTipoProduto.java</file>
+            <file>file:/C:/Users/MatheusH/Downloads/pasta/trabalho%20final/src/Classes/PedidoCompra.java</file>
         </group>
     </open-files>
 </project-private>
