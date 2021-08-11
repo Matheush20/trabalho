@@ -38,21 +38,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menubar = new javax.swing.JMenuBar();
         mvizualizar = new javax.swing.JMenu();
-        mitipoprod = new javax.swing.JMenuItem();
         jEstado = new javax.swing.JMenuItem();
+        micategoria = new javax.swing.JMenuItem();
+        mitipoprod = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
 
         mvizualizar.setText("Cadastrar");
-
-        mitipoprod.setText("Tipo Produto");
-        mitipoprod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitipoprodActionPerformed(evt);
-            }
-        });
-        mvizualizar.add(mitipoprod);
 
         jEstado.setText("Estado");
         jEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +54,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mvizualizar.add(jEstado);
+
+        micategoria.setText("Categoria");
+        micategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                micategoriaActionPerformed(evt);
+            }
+        });
+        mvizualizar.add(micategoria);
+
+        mitipoprod.setText("Tipo Produto");
+        mitipoprod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitipoprodActionPerformed(evt);
+            }
+        });
+        mvizualizar.add(mitipoprod);
 
         menubar.add(mvizualizar);
 
@@ -92,6 +101,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jEstadoActionPerformed
 
+    private void micategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_micategoriaActionPerformed
+            
+        VizualizarCategoria vc = new VizualizarCategoria();
+        vc.setVisible(true);
+
+    }//GEN-LAST:event_micategoriaActionPerformed
+
     public static void main(String args[]) {
       
        
@@ -105,6 +121,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jEstado;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JMenuItem micategoria;
     private javax.swing.JMenuItem mitipoprod;
     private javax.swing.JMenu mvizualizar;
     // End of variables declaration//GEN-END:variables

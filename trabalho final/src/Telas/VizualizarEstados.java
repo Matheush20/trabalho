@@ -255,7 +255,7 @@ public class VizualizarEstados extends javax.swing.JFrame {
     }//GEN-LAST:event_tbEstadoMouseClicked
 
     private void jbexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbexcluirActionPerformed
-        int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir este tipo de produto ?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+        int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir este estado ?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
         if (option == 0){
             excluirEstado();
             jbalterar.setEnabled(false);
@@ -265,16 +265,23 @@ public class VizualizarEstados extends javax.swing.JFrame {
     }//GEN-LAST:event_jbexcluirActionPerformed
 
     private void jbalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbalterarActionPerformed
-       Estado ax1 = new Estado();
-       DefaultTableModel model = (DefaultTableModel) getTbEstado().getModel();
-       ax1.setCodEstado((int) model.getValueAt(getTbEstado().getSelectedRow(), 0));
-       ax1.setDescricao((String) model.getValueAt(getTbEstado().getSelectedRow(), 1));
-       ax1.setSigla((String)model.getValueAt(getTbEstado().getSelectedRow(), 2));
-       Alterar_Estado aet = new Alterar_Estado();
-       aet.ax(ax1);
-       aet.setVisible(true);
-       dispose();
+       
+       int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo alterar este estado ?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+       
+       if (option == 0){
+           Estado ax1 = new Estado();
+           DefaultTableModel model = (DefaultTableModel) getTbEstado().getModel();
+           ax1.setCodEstado((int) model.getValueAt(getTbEstado().getSelectedRow(), 0));
+           ax1.setDescricao((String) model.getValueAt(getTbEstado().getSelectedRow(), 1));
+           ax1.setSigla((String) model.getValueAt(getTbEstado().getSelectedRow(), 2));
+           Alterar_Estado aet = new Alterar_Estado();
+           aet.ax(ax1);
+           aet.setVisible(true);
+           dispose();
         
+           
+       }
+    
     }//GEN-LAST:event_jbalterarActionPerformed
 
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed

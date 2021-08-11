@@ -1,4 +1,3 @@
-
 package Telas;
 
 import Classes.Categoria;
@@ -6,39 +5,60 @@ import Classes.TipoProduto;
 import DatabaseConnection.ConexaoBanco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VizualizarCategoria extends javax.swing.JFrame {
 
-    /**
-     * @return the listCategoria
-     */
-    public List <Categoria> getListCategoria() {
+    public List<Categoria> getListCategoria() {
         return listCategoria;
     }
 
-    /**
-     * @param listCategoria the listCategoria to set
-     */
-    public void setListCategoria(List <Categoria> listCategoria) {
+    public void setListCategoria(List<Categoria> listCategoria) {
         this.listCategoria = listCategoria;
     }
 
-    
-    
-    private List <Categoria> listCategoria;
-    
+    private List<Categoria> listCategoria;
+
     public VizualizarCategoria() {
         initComponents();
         listCategoria = new ArrayList<>();
+        preencherdados();
     }
 
-  
+    private void preencherdados() {
+        try {
+            Connection conexao = ConexaoBanco.getConnection();
+            String sql = "select * from categoria";
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int cod = rs.getInt("codCategoria");
+                String desc = rs.getString("descricao");
+                Categoria categoria = new Categoria(cod, desc);
+                getListCategoria().add(categoria);
+
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao obter  os dados do banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tbcategoria.getModel();
+        for (Categoria cate : getListCategoria()) {
+            model.addRow(new Object[]{cate.getDescricao(), cate.getCodCategoria()});
+
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -108,6 +128,11 @@ public class VizualizarCategoria extends javax.swing.JFrame {
         jbalterar.setText("Alterar");
         jbalterar.setToolTipText("");
         jbalterar.setEnabled(false);
+        jbalterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbalterarActionPerformed(evt);
+            }
+        });
 
         jbexcluir.setText("Excluir");
         jbexcluir.setEnabled(false);
@@ -160,32 +185,30 @@ public class VizualizarCategoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbcadastrarActionPerformed
-        
+
         CadastroCategoria cc = new CadastroCategoria();
         cc.setVisible(true);
         hide();
-        
-        
-        
+
+
     }//GEN-LAST:event_jbcadastrarActionPerformed
-    
-    private void excluir (){
-        
-        
-            try {
+
+    private void excluir() {
+
+        try {
             DefaultTableModel model = (DefaultTableModel) tbcategoria.getModel();
-            int codcategoria = (int) model.getValueAt(tbcategoria.getSelectedRow(), 0);
+            int codcategoria = (int) model.getValueAt(tbcategoria.getSelectedRow(), 1);
             String sql = "delete from categoria where codCategoria = ?";
             Connection conn = ConexaoBanco.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, codcategoria);
+            ps.setInt(2, codcategoria);
             ps.execute();
             Categoria ax = new Categoria();
             ax.setCodCategoria(codcategoria);
-            int indice = getL().indexOf(ax);
+            int indice = getListCategoria().indexOf(ax);
             if (indice > -1) {
-                getListtipoprod().remove(indice);
-                model.removeRow(getTbtipoproduto().getSelectedRow());
+                getListCategoria().remove(indice);
+                model.removeRow(tbcategoria.getSelectedRow());
 
             }
 
@@ -195,9 +218,15 @@ public class VizualizarCategoria extends javax.swing.JFrame {
 
         }
     }
-    
+
     private void jbexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbexcluirActionPerformed
-      
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo excluir o item selecionado?", "Confrimação", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            excluir();
+            jbalterar.setEnabled(false);
+            jbexcluir.setEnabled(false);
+
+        }
     }//GEN-LAST:event_jbexcluirActionPerformed
 
     private void tbcategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbcategoriaMouseClicked
@@ -208,9 +237,26 @@ public class VizualizarCategoria extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbcategoriaMouseClicked
 
-  
+    private void jbalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbalterarActionPerformed
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo alterar o item selecionado?", "Confrimação", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+
+            Categoria ax = new Categoria();
+            DefaultTableModel model = (DefaultTableModel) tbcategoria.getModel();
+            ax.setCodCategoria((int) model.getValueAt(tbcategoria.getSelectedRow(), 1));
+            ax.setDescricao((String) model.getValueAt(tbcategoria.getSelectedRow(), 0));
+            AlterarCategoria ac = new AlterarCategoria();
+            ac.ax(ax);
+            ac.setVisible(true);
+            hide();
+
+        }
+
+
+    }//GEN-LAST:event_jbalterarActionPerformed
+
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VizualizarCategoria().setVisible(true);

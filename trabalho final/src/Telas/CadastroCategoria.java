@@ -153,7 +153,6 @@ public class CadastroCategoria extends javax.swing.JFrame {
     private void jbconfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbconfirmarActionPerformed
 
         cadastro();
-        JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         VizualizarCategoria vc = new VizualizarCategoria();
         dispose();
         vc.setVisible(true);

@@ -176,7 +176,10 @@ public class Alterar_Estado extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair de alteração de Estado ?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (option == 0){
+            VizualizarEstados ve = new VizualizarEstados();
+            
             dispose();             
+            ve.setVisible(true);
         }
     }//GEN-LAST:event_cancelButtonActionPerformed
 
