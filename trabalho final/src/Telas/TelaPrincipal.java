@@ -39,6 +39,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menubar = new javax.swing.JMenuBar();
         mvizualizar = new javax.swing.JMenu();
         mitipoprod = new javax.swing.JMenuItem();
+        jEstado = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -52,6 +53,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mvizualizar.add(mitipoprod);
+
+        jEstado.setText("Estado");
+        jEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEstadoActionPerformed(evt);
+            }
+        });
+        mvizualizar.add(jEstado);
 
         menubar.add(mvizualizar);
 
@@ -77,6 +86,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         vtp.setVisible(true);
     }//GEN-LAST:event_mitipoprodActionPerformed
 
+    private void jEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEstadoActionPerformed
+        VizualizarEstados estado = new VizualizarEstados();
+        estado.setVisible(true);
+        
+    }//GEN-LAST:event_jEstadoActionPerformed
+
     public static void main(String args[]) {
       
        
@@ -88,6 +103,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jEstado;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JMenuItem mitipoprod;
     private javax.swing.JMenu mvizualizar;
