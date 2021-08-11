@@ -293,36 +293,7 @@ public class VizualizarEstados extends javax.swing.JFrame {
         hide();
         ce.setVisible(true);
     }//GEN-LAST:event_jbCadastrarActionPerformed
-
-    private void excluirtipoprod(){
-            try {
-            DefaultTableModel model = (DefaultTableModel) getTbEstado().getModel();      
-            int codEstado = (int) model.getValueAt(tbEstado.getSelectedRow(), 0);
-            String sql = "delete from estado where codEstado = ?";
-            Connection conn  = ConexaoBanco.getConnection();
-            PreparedStatement  ps = conn.prepareStatement(sql);
-            ps.setInt(1, codEstado);
-            ps.execute();
-            Estado ax = new Estado();
-            ax.setCodEstado(codEstado);
-            int indice =  listEstado.indexOf(ax);
-            if (indice > -1){
-                getListEstado().remove(indice);
-                model.removeRow(tbEstado.getSelectedRow());
-                
-            }
-                    
-            
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(VizualizarEstados.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-            
-        } 
         
-        
-    }
-    
-    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
