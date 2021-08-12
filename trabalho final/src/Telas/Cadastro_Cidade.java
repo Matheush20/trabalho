@@ -128,6 +128,11 @@ public class Cadastro_Cidade extends javax.swing.JFrame {
         submitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jCadastroCidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Casdastro de Cidade"));
 
@@ -142,6 +147,11 @@ public class Cadastro_Cidade extends javax.swing.JFrame {
         });
 
         cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         submitButton.setText("Cadastrar");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +221,20 @@ public class Cadastro_Cidade extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         cadastrarCidade();
+        dispose();
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        VizualizarCidades cc = new VizualizarCidades();
+        cc.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair do cadastro de Cidade?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            dispose();
+        }
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments

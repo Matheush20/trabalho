@@ -119,9 +119,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
     private void jbcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbcancelarActionPerformed
         int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair do cadastro de categoria?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (option == 0) {
-            VizualizarCategoria vc = new VizualizarCategoria();
             dispose();
-            vc.setVisible(true);
         }
     }//GEN-LAST:event_jbcancelarActionPerformed
 
@@ -154,9 +152,7 @@ public class CadastroCategoria extends javax.swing.JFrame {
     private void jbconfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbconfirmarActionPerformed
 
         cadastro();
-        VizualizarCategoria vc = new VizualizarCategoria();
         dispose();
-        vc.setVisible(true);
 
     }//GEN-LAST:event_jbconfirmarActionPerformed
 

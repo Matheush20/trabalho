@@ -160,9 +160,7 @@ public class AlterarCategoria extends javax.swing.JFrame {
     private void jbcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbcancelarActionPerformed
         int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair do cadastro de categoria?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (option == 0) {
-            VizualizarCategoria vc = new VizualizarCategoria();
             dispose();
-            vc.setVisible(true);
         }
     }//GEN-LAST:event_jbcancelarActionPerformed
 

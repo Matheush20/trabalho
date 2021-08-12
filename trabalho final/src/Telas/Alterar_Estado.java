@@ -84,6 +84,11 @@ public class Alterar_Estado extends javax.swing.JFrame {
         sigla_box = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         alterar_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Alterar de Estado"));
 
@@ -171,10 +176,8 @@ public class Alterar_Estado extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair de alteração de Estado ?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (option == 0){
-            VizualizarEstados ve = new VizualizarEstados();
-            
+         
             dispose();             
-            ve.setVisible(true);
         }
     }//GEN-LAST:event_cancelButtonActionPerformed
 
@@ -189,13 +192,13 @@ public class Alterar_Estado extends javax.swing.JFrame {
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         alterar();
         JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alteração cadastral", JOptionPane.INFORMATION_MESSAGE);
-        dispose();
-        VizualizarEstados ve = new VizualizarEstados();
-        
-        
-        ve.setVisible(true);
-        
+        dispose();                
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        VizualizarEstados ve = new VizualizarEstados();
+        ve.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

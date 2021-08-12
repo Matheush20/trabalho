@@ -164,10 +164,8 @@ public class Cadastro_Estado extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair do cadastro de Estado ?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (option == 0){
-            VizualizarEstados ve = new VizualizarEstados();
             
-            dispose();             
-            ve.setVisible(true);          
+            dispose();                       
         }
         VizualizarEstados ve = new VizualizarEstados ();
         ve.setVisible(true);
@@ -184,10 +182,7 @@ public class Cadastro_Estado extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         cadastrarEstado();
-        VizualizarEstados  ve = new VizualizarEstados();
-        dispose();
-        ve.setVisible(true);
-        
+        dispose();      
         
     }//GEN-LAST:event_submitButtonActionPerformed
 

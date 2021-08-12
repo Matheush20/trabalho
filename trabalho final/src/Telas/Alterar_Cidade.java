@@ -1,5 +1,6 @@
 package Telas;
 
+import Classes.Categoria;
 import Classes.Cidade;
 import Classes.Estado;
 import DatabaseConnection.ConexaoBanco;
@@ -108,29 +109,45 @@ public class Alterar_Cidade extends javax.swing.JFrame {
 
     }
     
-    private void alterarCidade (){
+    private void alterarCidade(){
         
-       try {
-            String sql = "update cidade set descricao = ? where codCidade = " + String.valueOf(getCodigo());
-            Connection conexao = ConexaoBanco.getConnection();
-            PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setString(1, cidade_box.getText());
-            ps.setInt(2, estado_combo_box.getSelectedIndex());
-            ps.execute();
-
-        } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Erro ao obter  os dados do banco de dados", "Erro", JOptionPane.ERROR_MESSAGE);
-
+       if(validardados()){
+                 
+            try {
+                String sql = "update cidade set descricao = ?, codEstado = ? where codCidade = " + String.valueOf(codigo);
+                Connection conn = ConexaoBanco.getConnection();
+                PreparedStatement  ps = conn.prepareStatement(sql);
+                ps.setString(1, cidade_box.getText());
+                
+                int index = estado_combo_box.getSelectedIndex();
+                String nome = estado_combo_box.getItemAt(index);
+                int cod = 0;
+                for (Estado estado : listEstado) {
+                    if(estado.getDescricao().equals(nome)){
+                        cod = estado.getCodEstado();
+                    }
+                }
+                
+                ps.setInt(2, cod);
+                ps.execute();
+            
+            } 
+            catch (ClassNotFoundException  | SQLException ex) { 
+                Logger.getLogger(Cadastro_Estado.class.getName()).log(Level.SEVERE, null, ex);            
+            }
+            
         }
     }
 
     public void ax(Cidade cidade){
-        Estado estado = new Estado();
-        estado.setCodEstado(cidade.getCodEstado());
-        int index = getListEstado().indexOf(estado);
+       
         cidade_box.setText(cidade.getDescricao());
-        estado_combo_box.setSelectedIndex(index);
-        setCodigo(estado.getCodEstado());
+        Estado et = new Estado();
+        et.setCodEstado(cidade.getCodEstado());
+        int index = getListEstado().indexOf(et);
+        et = getListEstado().get(index);
+        estado_combo_box.setSelectedItem(et.getDescricao());
+        setCodigo(cidade.getCodCidade());
     }
 
 
@@ -148,6 +165,11 @@ public class Alterar_Cidade extends javax.swing.JFrame {
         submitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jCadastroCidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Casdastro de Cidade"));
 
@@ -162,6 +184,11 @@ public class Alterar_Cidade extends javax.swing.JFrame {
         });
 
         cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         submitButton.setText("Alterar");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +258,21 @@ public class Alterar_Cidade extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         alterarCidade();
+        JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alteração cadastral", JOptionPane.INFORMATION_MESSAGE);
+        dispose(); 
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        VizualizarCidades cc = new VizualizarCidades();
+        cc.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair da alteração de Cidade?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            dispose();
+        }
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments

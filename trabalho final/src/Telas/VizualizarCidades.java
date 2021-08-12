@@ -40,6 +40,7 @@ public class VizualizarCidades extends javax.swing.JFrame {
         listCidade = new ArrayList<>();
         listEstado = new ArrayList<>();
         preencherdados();
+        
     }
     
     private List<Cidade> listCidade;
@@ -97,7 +98,6 @@ public class VizualizarCidades extends javax.swing.JFrame {
         ScCidade = new javax.swing.JScrollPane();
         TbCidade = new javax.swing.JTable();
         pButtons = new javax.swing.JPanel();
-        excluirButton = new javax.swing.JButton();
         alterarButton = new javax.swing.JButton();
         cadastrarButton = new javax.swing.JButton();
 
@@ -115,6 +115,11 @@ public class VizualizarCidades extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        TbCidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TbCidadeMouseClicked(evt);
             }
         });
         ScCidade.setViewportView(TbCidade);
@@ -135,11 +140,20 @@ public class VizualizarCidades extends javax.swing.JFrame {
             .addComponent(ScCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
         );
 
-        excluirButton.setText("Excluir");
-
         alterarButton.setText("Alterar");
+        alterarButton.setEnabled(false);
+        alterarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarButtonActionPerformed(evt);
+            }
+        });
 
         cadastrarButton.setText("Cadastrar");
+        cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pButtonsLayout = new javax.swing.GroupLayout(pButtons);
         pButtons.setLayout(pButtonsLayout);
@@ -150,16 +164,13 @@ public class VizualizarCidades extends javax.swing.JFrame {
                 .addComponent(cadastrarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alterarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(excluirButton)
-                .addGap(14, 14, 14))
+                .addContainerGap())
         );
         pButtonsLayout.setVerticalGroup(
             pButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pButtonsLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(pButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(excluirButton)
                     .addComponent(alterarButton)
                     .addComponent(cadastrarButton))
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -182,6 +193,46 @@ public class VizualizarCidades extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
+        Cadastro_Cidade cc = new Cadastro_Cidade();
+        hide();
+        cc.setVisible(true);
+    }//GEN-LAST:event_cadastrarButtonActionPerformed
+
+    private void alterarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarButtonActionPerformed
+       
+       int option  = JOptionPane.showConfirmDialog(this, "Deseja mesmo alterar esta Cidade ?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+       
+       if (option == 0){
+            Cidade ax1 = new Cidade();
+            DefaultTableModel model = (DefaultTableModel) getTbCidade().getModel();
+            ax1.setCodCidade((int) model.getValueAt(getTbCidade().getSelectedRow(), 0));
+            ax1.setDescricao((String) model.getValueAt(getTbCidade().getSelectedRow(), 1));
+            
+            String sigla = (String) model.getValueAt(getTbCidade().getSelectedRow(), 2);
+            int codigo = 0;
+            
+            for (Estado estado : listEstado) {
+               if(estado.getSigla() == sigla){
+                   codigo = estado.getCodEstado();
+               }
+           }
+            
+           ax1.setCodEstado(codigo);
+           
+           Alterar_Cidade ac = new Alterar_Cidade();
+           hide();
+           ac.ax(ax1);
+           ac.setVisible(true);
+       }
+    }//GEN-LAST:event_alterarButtonActionPerformed
+
+    private void TbCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TbCidadeMouseClicked
+         if(getTbCidade().getSelectedRow() > -1){
+             getAlterarButton().setEnabled(true);           
+           }
+    }//GEN-LAST:event_TbCidadeMouseClicked
 
 
     public static void main(String args[]) {
@@ -222,7 +273,6 @@ public class VizualizarCidades extends javax.swing.JFrame {
     private javax.swing.JPanel TbCidadesPanel;
     private javax.swing.JButton alterarButton;
     private javax.swing.JButton cadastrarButton;
-    private javax.swing.JButton excluirButton;
     private javax.swing.JPanel pButtons;
     // End of variables declaration//GEN-END:variables
 
@@ -294,20 +344,6 @@ public class VizualizarCidades extends javax.swing.JFrame {
      */
     public void setCadastrarButton(javax.swing.JButton cadastrarButton) {
         this.cadastrarButton = cadastrarButton;
-    }
-
-    /**
-     * @return the excluirButton
-     */
-    public javax.swing.JButton getExcluirButton() {
-        return excluirButton;
-    }
-
-    /**
-     * @param excluirButton the excluirButton to set
-     */
-    public void setExcluirButton(javax.swing.JButton excluirButton) {
-        this.excluirButton = excluirButton;
     }
 
     /**

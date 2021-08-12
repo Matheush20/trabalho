@@ -234,9 +234,7 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
         int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair do cadastro do tipo de produto ?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (option == 0) {
             
-            VizualizarTipoprod  vtp = new VizualizarTipoprod();
             dispose();
-            vtp.setVisible(true);
         }
     }//GEN-LAST:event_jbcancelarActionPerformed
 
@@ -291,9 +289,7 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
 
     private void jbconfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbconfirmarActionPerformed
         cadastrartipoprod();
-        VizualizarTipoprod tp = new VizualizarTipoprod ();
         dispose();
-        tp.setVisible(true);
     }//GEN-LAST:event_jbconfirmarActionPerformed
 
     private void cbcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcategoriaActionPerformed

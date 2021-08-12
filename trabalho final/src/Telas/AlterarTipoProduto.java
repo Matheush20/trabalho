@@ -284,11 +284,8 @@ public class AlterarTipoProduto extends javax.swing.JFrame {
 
     private void jbcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbcancelarActionPerformed
         int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo sair da alteração do tipo de produto ?", "Confirmação", JOptionPane.YES_NO_OPTION);
-        if (option == 0) {
-            
-            VizualizarTipoprod vtp = new VizualizarTipoprod();
+        if (option == 0) {           
             dispose();
-            vtp.setVisible(true);
         }
     }//GEN-LAST:event_jbcancelarActionPerformed
 
