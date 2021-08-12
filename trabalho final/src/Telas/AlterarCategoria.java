@@ -89,6 +89,11 @@ public class AlterarCategoria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alteração Categoria");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         pPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
 
@@ -171,6 +176,11 @@ public class AlterarCategoria extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_jbalterarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        VizualizarCategoria vc = new VizualizarCategoria();
+        vc.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     public static void main(String args[]) {
 

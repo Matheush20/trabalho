@@ -115,6 +115,11 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Tipo Produto");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jpPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Tipo Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
 
@@ -294,6 +299,11 @@ public class CadastroTipoProduto extends javax.swing.JFrame {
     private void cbcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcategoriaActionPerformed
  
     }//GEN-LAST:event_cbcategoriaActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        VizualizarTipoprod tp = new VizualizarTipoprod ();
+        tp.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
  
     public static void main(String args[]) {

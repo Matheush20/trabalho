@@ -170,6 +170,11 @@ public class AlterarTipoProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Tipo Produto");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jpPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar Tipo Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
 
@@ -226,15 +231,14 @@ public class AlterarTipoProduto extends javax.swing.JFrame {
                         .addComponent(lQuantmaxrecept)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfQuantmaxrecept))
-                    .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPrincipalLayout.createSequentialGroup()
-                            .addComponent(lupc)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ftfupc))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPrincipalLayout.createSequentialGroup()
-                            .addComponent(lcategoria)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addComponent(lupc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ftfupc))
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addComponent(lcategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 131, Short.MAX_VALUE))
         );
         jpPrincipalLayout.setVerticalGroup(
@@ -301,6 +305,11 @@ public class AlterarTipoProduto extends javax.swing.JFrame {
     private void ftfupcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfupcActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ftfupcActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        VizualizarTipoprod tp = new VizualizarTipoprod ();
+        tp.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

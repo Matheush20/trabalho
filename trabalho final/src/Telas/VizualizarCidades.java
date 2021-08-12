@@ -15,30 +15,20 @@ import javax.swing.table.DefaultTableModel;
 
 public class VizualizarCidades extends javax.swing.JFrame {
 
-    /**
-     * @return the listEstado
-     */
+
     public List<Estado> getListEstado() {
         return listEstado;
     }
 
-    /**
-     * @param listEstado the listEstado to set
-     */
+
     public void setListEstado(List<Estado> listEstado) {
         this.listEstado = listEstado;
     }
 
-    /**
-     * @return the listCidade
-     */
     public List<Cidade> getListCidade() {
         return listCidade;
     }
 
-    /**
-     * @param listCidade the listCidade to set
-     */
     public void setListCidade(List<Cidade> listCidade) {
         this.listCidade = listCidade;
     }
@@ -193,9 +183,7 @@ public class VizualizarCidades extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
